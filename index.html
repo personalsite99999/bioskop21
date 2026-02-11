@@ -21,6 +21,7 @@
     </script>
     <script src="https://cdn.safelinku.com/js/sdk.js" async></script>
 
+    <!-- Tailwind CSS (CDN is fine for this setup to keep it simple) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -34,23 +35,20 @@
         }
       }
     </script>
-    <script type="importmap">
+  <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@18.2.0",
-    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
-    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client?deps=react@18.2.0",
-    "react-dom": "https://esm.sh/react-dom@18.2.0?deps=react@18.2.0",
-    "framer-motion": "https://esm.sh/framer-motion@10.16.4?deps=react@18.2.0,react-dom@18.2.0",
-    "react-player": "https://esm.sh/react-player@2.14.1?deps=react@18.2.0",
-    "react-player/lazy": "https://esm.sh/react-player@2.14.1/lazy?deps=react@18.2.0",
+    "react": "https://esm.sh/react@^19.2.4",
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
     "react/": "https://esm.sh/react@^19.2.4/",
-    "react-player/": "https://esm.sh/react-player@^3.4.0/"
+    "framer-motion": "https://esm.sh/framer-motion@^12.34.0",
+    "react-player/": "https://esm.sh/react-player@^3.4.0/",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4",
+    "vite": "https://esm.sh/vite@^7.3.1"
   }
 }
 </script>
-  </head>
+</head>
   <body class="bg-[#050505] text-gray-200 antialiased overflow-x-hidden selection:bg-pink-500 selection:text-white">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
