@@ -1236,6 +1236,7 @@ const movieData: Movie[] = [
 export default function Home() {
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [isPlayerReady, setIsPlayerReady] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Cast ReactPlayer to any to avoid type errors with 'url' prop
   const Player = ReactPlayer as any;
@@ -1250,6 +1251,12 @@ export default function Home() {
     setIsPlayerReady(false);
   };
 
+  // Filter Logic
+  const filteredMovies = movieData.filter(movie => 
+    movie.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    movie.year.includes(searchQuery)
+  );
+
   return (
     <div className="w-full max-w-7xl px-4 py-8 md:px-8">
       
@@ -1257,7 +1264,7 @@ export default function Home() {
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="mb-12 text-center relative"
+        className="mb-8 text-center relative"
       >
         <h1 className="text-5xl md:text-7xl font-black font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-white to-pink-500 tracking-tighter drop-shadow-[0_0_15px_rgba(0,243,255,0.5)]">
           BIOSKOP<span className="text-pink-500">21</span>
@@ -1268,17 +1275,52 @@ export default function Home() {
         <div className="w-24 h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent mx-auto mt-4 rounded-full shadow-[0_0_10px_#00f3ff]" />
       </motion.div>
 
-      {/* --- MOVIE GRID --- */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-        {movieData.map((movie, index) => (
-          <MovieCard 
-            key={movie.id} 
-            movie={movie} 
-            index={index} 
-            onClick={handleMovieClick} 
+      {/* --- SEARCH BAR --- */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="max-w-md mx-auto mb-12 relative group"
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-pink-500 rounded-lg blur opacity-25 group-hover:opacity-60 transition duration-500"></div>
+        <div className="relative flex items-center bg-black border border-cyan-500/50 rounded-lg overflow-hidden focus-within:border-cyan-400 focus-within:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all">
+          <span className="pl-4 text-cyan-500 font-bold text-xl">🔍</span>
+          <input
+            type="text"
+            placeholder="CARI JUDUL / TAHUN..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-transparent text-cyan-100 placeholder-cyan-800/50 py-3 px-4 focus:outline-none font-share-tech tracking-wider uppercase"
           />
-        ))}
-      </div>
+          {searchQuery && (
+            <button 
+              onClick={() => setSearchQuery('')}
+              className="pr-4 text-pink-500 hover:text-white font-bold transition-colors"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+      </motion.div>
+
+      {/* --- MOVIE GRID --- */}
+      {filteredMovies.length > 0 ? (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+          {filteredMovies.map((movie, index) => (
+            <MovieCard 
+              key={movie.id} 
+              movie={movie} 
+              index={index} 
+              onClick={handleMovieClick} 
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-20 border border-dashed border-gray-800 rounded-lg">
+          <p className="text-pink-500 font-orbitron text-2xl animate-pulse">DATA NOT FOUND</p>
+          <p className="text-gray-500 font-share-tech mt-2">Film yang lo cari gak ada di database bre.</p>
+        </div>
+      )}
 
       {/* --- FOOTER --- */}
       <footer className="mt-20 text-center text-gray-600 font-share-tech text-sm pb-8">
