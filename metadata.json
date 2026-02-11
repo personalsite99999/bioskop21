@@ -1,0 +1,5 @@
+{
+  "name": "BIOSKOP21",
+  "description": "Premium Cyberpunk Movie Streaming App with Next.js and Safelink monetization.",
+  "requestFramePermissions": []
+}
