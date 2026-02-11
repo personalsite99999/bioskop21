@@ -1,10 +1,8 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MovieCard from './components/MovieCard';
 import { Movie } from './types';
-
-// Standard React lazy load
-const ReactPlayer = React.lazy(() => import('react-player/lazy'));
+import ReactPlayer from 'react-player';
 
 // --- DATABASE FILM OTOMATIS ---
 // MAPPED FROM YOUR GOOGLE DRIVE LINKS
@@ -1239,6 +1237,9 @@ export default function Home() {
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [isPlayerReady, setIsPlayerReady] = useState(false);
 
+  // Cast ReactPlayer to any to avoid type errors with 'url' prop
+  const Player = ReactPlayer as any;
+
   const handleMovieClick = (movie: Movie) => {
     setSelectedMovie(movie);
     setIsPlayerReady(false);
@@ -1317,23 +1318,21 @@ export default function Home() {
                    </div>
                 )}
                 
-                <Suspense fallback={<div className="text-white">Loading Player...</div>}>
-                  <ReactPlayer
-                    url={selectedMovie.driveUrl}
-                    width="100%"
-                    height="100%"
-                    controls={true}
-                    playing={true}
-                    onReady={() => setIsPlayerReady(true)}
-                    config={{
-                      file: {
-                        attributes: {
-                          controlsList: 'nodownload' 
-                        }
+                <Player
+                  url={selectedMovie.driveUrl}
+                  width="100%"
+                  height="100%"
+                  controls={true}
+                  playing={true}
+                  onReady={() => setIsPlayerReady(true)}
+                  config={{
+                    file: {
+                      attributes: {
+                        controlsList: 'nodownload' 
                       }
-                    }}
-                  />
-                </Suspense>
+                    }
+                  }}
+                />
               </div>
 
               {/* Modal Footer / Info */}

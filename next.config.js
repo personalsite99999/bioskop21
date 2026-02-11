@@ -1,3 +1,3 @@
-// File ini tidak digunakan karena project menggunakan Vite + React SPA.
-// Vercel akan otomatis mendeteksi vite.config.ts dan package.json.
-export default {}
+// File ini diabaikan karena project menggunakan Vite (Single Page App).
+// Konfigurasi build diatur melalui vite.config.ts dan vercel.json.
+export default {};
