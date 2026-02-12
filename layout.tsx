@@ -30,43 +30,40 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <>
-      {/* Techno Dynamic Navy & Green Gradient Background */}
-      <div className="fixed inset-0 z-[-10] bg-[#020617] overflow-hidden">
-        {/* Base Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a192f] via-[#064e3b]/30 to-[#020617]" />
+      {/* Techno Dynamic Rainbow Background */}
+      <div className="fixed inset-0 z-[-10] bg-[#020202] overflow-hidden">
         
-        {/* Animated Techno Orbs - Navy & Green Theme */}
-        <div className="absolute top-[-10%] left-[-10%] w-[80%] h-[80%] bg-blue-900/20 blur-[150px] rounded-full animate-[float_15s_ease-in-out_infinite]" />
-        <div className="absolute top-[20%] right-[-10%] w-[60%] h-[60%] bg-emerald-600/10 blur-[130px] rounded-full animate-[float_18s_ease-in-out_infinite_2s]" />
-        <div className="absolute bottom-[-15%] left-[5%] w-[70%] h-[70%] bg-green-900/20 blur-[160px] rounded-full animate-[float_22s_ease-in-out_infinite_reverse]" />
-        <div className="absolute bottom-[10%] right-[15%] w-[45%] h-[45%] bg-cyan-900/20 blur-[120px] rounded-full animate-[float_14s_ease-in-out_infinite_3s]" />
-        
-        {/* Bright Dark Green Highlight Orbs */}
-        <div className="absolute top-[40%] left-[30%] w-[30%] h-[30%] bg-[#052e16]/40 blur-[100px] rounded-full animate-[float_20s_ease-in-out_infinite_1s]" />
+        {/* Animated Rainbow Orbs */}
+        <div className="absolute top-[-10%] left-[-10%] w-[70%] h-[70%] bg-red-600/10 blur-[150px] rounded-full animate-[float_12s_ease-in-out_infinite]" />
+        <div className="absolute top-[20%] right-[-5%] w-[50%] h-[50%] bg-yellow-500/10 blur-[130px] rounded-full animate-[float_18s_ease-in-out_infinite_1s]" />
+        <div className="absolute bottom-[-10%] left-[10%] w-[60%] h-[60%] bg-green-500/10 blur-[140px] rounded-full animate-[float_20s_ease-in-out_infinite_reverse]" />
+        <div className="absolute bottom-[10%] right-[10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full animate-[float_15s_ease-in-out_infinite_2s]" />
+        <div className="absolute top-[40%] left-[30%] w-[35%] h-[35%] bg-purple-600/10 blur-[110px] rounded-full animate-[float_22s_ease-in-out_infinite_3s]" />
+        <div className="absolute top-[-5%] left-[40%] w-[45%] h-[45%] bg-cyan-400/10 blur-[130px] rounded-full animate-[float_14s_ease-in-out_infinite_4s]" />
 
-        {/* Techno Grid Mesh with subtle Cyan/Green tint */}
+        {/* Techno Grid Mesh */}
         <div 
-          className="absolute inset-0 opacity-[0.05]"
+          className="absolute inset-0 opacity-[0.07]"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(34, 197, 94, 0.2) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(34, 197, 94, 0.2) 1px, transparent 1px)`,
-            backgroundSize: '35px 35px'
+            backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
           }}
         />
 
         {/* Moving Prismatic Scan Lines */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-400/5 to-transparent h-[40%] w-full animate-[sweep_12s_linear_infinite]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent h-[30%] w-full animate-[sweep_10s_linear_infinite]" />
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes float {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(60px, -40px) scale(1.15); }
-          66% { transform: translate(-50px, 50px) scale(0.9); }
+          33% { transform: translate(50px, -30px) scale(1.1); }
+          66% { transform: translate(-40px, 40px) scale(0.9); }
         }
         @keyframes sweep {
           0% { transform: translateY(-100%); }
-          100% { transform: translateY(300%); }
+          100% { transform: translateY(400%); }
         }
       `}} />
 
