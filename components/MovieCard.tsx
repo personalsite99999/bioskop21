@@ -16,7 +16,7 @@ const getGenreStyle = (genre: Movie['genre']) => {
     case 'Komedi': return { border: 'border-yellow-500/20', text: 'text-yellow-400', bg: 'bg-yellow-500/5', glow: 'shadow-[0_0_15px_rgba(234,179,8,0.1)]' };
     case 'Drama': return { border: 'border-blue-500/20', text: 'text-blue-400', bg: 'bg-blue-500/5', glow: 'shadow-[0_0_15px_rgba(59,130,246,0.1)]' };
     case 'Sci-Fi': return { border: 'border-cyan-500/20', text: 'text-cyan-400', bg: 'bg-cyan-500/5', glow: 'shadow-[0_0_15px_rgba(6,182,212,0.1)]' };
-    case 'Thriller': return { border: 'border-orange-500/20', text: 'text-orange-400', bg: 'bg-orange-500/5', glow: 'shadow-[0_0_15_rgba(249,115,22,0.1)]' };
+    case 'Thriller': return { border: 'border-orange-500/20', text: 'text-orange-400', bg: 'bg-orange-500/5', glow: 'shadow-[0_0_15px_rgba(249,115,22,0.1)]' };
     default: return { border: 'border-green-500/20', text: 'text-green-400', bg: 'bg-green-500/5', glow: 'shadow-[0_0_15px_rgba(34,197,94,0.1)]' };
   }
 };
@@ -68,7 +68,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, onClick, index }) => {
              <div className="w-1 h-1 rounded-full bg-green-500/50 animate-pulse" />
              <span className="text-[7px] font-share-tech text-gray-700 uppercase">READY</span>
           </div>
-          <span className="text-[8px] text-gray-800 font-orbitron">>></span>
+          <span className="text-[8px] text-gray-800 font-orbitron">{" >> "}</span>
         </div>
       </div>
     </motion.div>
