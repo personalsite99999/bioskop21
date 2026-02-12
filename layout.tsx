@@ -7,24 +7,28 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   useEffect(() => {
+    // 1. Inisialisasi Config SafelinkU
     const configScript = document.createElement('script');
+    configScript.type = 'text/javascript';
     configScript.innerHTML = `
       var safelink_cfg = {
         "api_key": "bc017cabcda8ab583f4af6f680333e933f7aee83",
         "include_domains": ["drive.google.com"],
+        "exclude_domains": ["whatsapp.com", "vercel.app"],
         "animation": true
       };
     `;
     document.head.appendChild(configScript);
 
+    // 2. Load SafelinkU SDK
     const sdkScript = document.createElement('script');
     sdkScript.src = 'https://cdn.safelinku.com/js/sdk.js';
     sdkScript.async = true;
     document.head.appendChild(sdkScript);
 
     return () => {
-      document.head.removeChild(configScript);
-      document.head.removeChild(sdkScript);
+      if (document.head.contains(configScript)) document.head.removeChild(configScript);
+      if (document.head.contains(sdkScript)) document.head.removeChild(sdkScript);
     };
   }, []);
 
@@ -32,19 +36,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <>
       {/* Techno Dynamic Navy & Green Gradient Background */}
       <div className="fixed inset-0 z-[-10] bg-[#020617] overflow-hidden">
-        {/* Base Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0a192f] via-[#064e3b]/30 to-[#020617]" />
         
-        {/* Animated Techno Orbs - Navy & Green Theme */}
+        {/* Animated Orbs */}
         <div className="absolute top-[-10%] left-[-10%] w-[80%] h-[80%] bg-blue-900/20 blur-[150px] rounded-full animate-[float_15s_ease-in-out_infinite]" />
         <div className="absolute top-[20%] right-[-10%] w-[60%] h-[60%] bg-emerald-600/10 blur-[130px] rounded-full animate-[float_18s_ease-in-out_infinite_2s]" />
         <div className="absolute bottom-[-15%] left-[5%] w-[70%] h-[70%] bg-green-900/20 blur-[160px] rounded-full animate-[float_22s_ease-in-out_infinite_reverse]" />
-        <div className="absolute bottom-[10%] right-[15%] w-[45%] h-[45%] bg-cyan-900/20 blur-[120px] rounded-full animate-[float_14s_ease-in-out_infinite_3s]" />
         
-        {/* Bright Dark Green Highlight Orbs */}
-        <div className="absolute top-[40%] left-[30%] w-[30%] h-[30%] bg-[#052e16]/40 blur-[100px] rounded-full animate-[float_20s_ease-in-out_infinite_1s]" />
-
-        {/* Techno Grid Mesh */}
+        {/* Grid Overlay */}
         <div 
           className="absolute inset-0 opacity-[0.05]"
           style={{
@@ -54,7 +53,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           }}
         />
 
-        {/* Moving Prismatic Scan Lines */}
+        {/* Scan Line */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-400/5 to-transparent h-[40%] w-full animate-[sweep_12s_linear_infinite]" />
       </div>
 
