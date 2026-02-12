@@ -6,7 +6,6 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   useEffect(() => {
-    // Inject SafelinkU Configuration
     const configScript = document.createElement('script');
     configScript.innerHTML = `
       var safelink_cfg = {
@@ -17,7 +16,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
     `;
     document.head.appendChild(configScript);
 
-    // Inject SafelinkU SDK
     const sdkScript = document.createElement('script');
     sdkScript.src = 'https://cdn.safelinku.com/js/sdk.js';
     sdkScript.async = true;
@@ -31,54 +29,37 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <>
-      {/* === TECHNO GREEN BACKGROUND LAYERS === */}
-      
-      {/* 1. Deep Matrix Base (Hitam Kehijauan) */}
-      <div className="fixed inset-0 pointer-events-none z-[-10] bg-[#010a01]" />
+      {/* Techno Dynamic Background */}
+      <div className="fixed inset-0 z-[-10] bg-black overflow-hidden">
+        {/* Animated Gradient Orbs */}
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-900/20 blur-[120px] rounded-full animate-[float_15s_ease-in-out_infinite]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-green-900/20 blur-[120px] rounded-full animate-[float_20s_ease-in-out_infinite_reverse]" />
+        <div className="absolute top-[30%] right-[10%] w-[30%] h-[30%] bg-blue-900/10 blur-[100px] rounded-full animate-[float_18s_ease-in-out_infinite_2s]" />
 
-      {/* 2. Ambient Toxic Green Glows */}
-      <div className="fixed top-[-20%] left-[-10%] w-[70%] h-[70%] rounded-full bg-green-600/10 blur-[120px] pointer-events-none z-[-9]" />
-      <div className="fixed bottom-[-20%] right-[-10%] w-[70%] h-[70%] rounded-full bg-emerald-600/10 blur-[120px] pointer-events-none z-[-9]" />
+        {/* Techno Grid Mesh */}
+        <div 
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: `linear-gradient(to right, rgba(34, 197, 94, 0.2) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(34, 197, 94, 0.2) 1px, transparent 1px)`,
+            backgroundSize: '30px 30px'
+          }}
+        />
 
-      {/* 3. Cyber Grid (Green Perspective) */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-[-8] opacity-[0.25]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(34, 197, 94, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34, 197, 94, 0.3) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px',
-          maskImage: 'radial-gradient(circle at 50% 50%, black 40%, transparent 90%)'
-        }}
-      />
+        {/* Vertical Scanning Light */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-green-500/5 to-transparent h-[20%] w-full animate-[sweep_8s_linear_infinite]" />
+      </div>
 
-      {/* 4. Digital Circuit Lines */}
-      <div className="fixed inset-0 pointer-events-none z-[-7] opacity-[0.1] bg-[repeating-linear-gradient(45deg,transparent,transparent_40px,rgba(34,197,94,0.15)_40px,rgba(34,197,94,0.15)_41px)]" />
-
-      {/* 5. Binary/Data Dots */}
-      <div className="fixed inset-0 pointer-events-none z-[-6] opacity-[0.2]"
-         style={{
-           backgroundImage: `radial-gradient(circle at center, #22c55e 1.5px, transparent 1.5px)`,
-           backgroundSize: '24px 24px',
-           maskImage: 'linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)'
-         }}
-      />
-
-      {/* 6. Vertical Data Streams (Matrix Rain Hint) */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-[-6] opacity-[0.05]"
-        style={{
-            backgroundImage: 'linear-gradient(0deg, transparent 50%, rgba(34, 197, 94, .5) 50%)',
-            backgroundSize: '4px 6px'
-        }}
-      />
-
-      {/* 7. CRT Scanlines */}
-      <div className="fixed inset-0 pointer-events-none z-[999] opacity-[0.05] bg-[linear-gradient(to_bottom,rgba(255,255,255,0)_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px]" />
-      
-      {/* 8. Vignette */}
-      <div className="fixed inset-0 pointer-events-none z-[-5] bg-[radial-gradient(circle_at_center,transparent_0%,#000000_130%)]" />
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes float {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(100px, 50px) scale(1.1); }
+        }
+        @keyframes sweep {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(500%); }
+        }
+      `}} />
 
       <main className="min-h-screen relative flex flex-col items-center w-full">
         {children}
