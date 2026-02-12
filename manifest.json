@@ -1,0 +1,17 @@
+
+{
+  "name": "BIOSKOP21",
+  "short_name": "B21",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#22c55e",
+  "icons": [
+    {
+      "src": "https://josanvin.github.io/josanvin/img/bioskop21.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
