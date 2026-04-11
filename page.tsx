@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import MovieCard from './components/MovieCard';
 import { Movie } from './types';
 import { movieData } from './data/movies';
-import ReactPlayer from 'react-player';
 
 const CATEGORIES: Movie['genre'][] = ['Action', 'Horor', 'Komedi', 'Drama', 'Sci-Fi', 'Thriller'];
 
@@ -20,7 +19,16 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<Movie['genre'] | 'ALL'>('ALL');
 
-  const Player = ReactPlayer as any;
+  const getEmbedUrl = (url: string) => {
+    if (!url) return '';
+    if (url.includes('drive.google.com')) {
+      const match = url.match(/(?:id=|\/d\/|file\/d\/)([^/&?]+)/);
+      if (match && match[1]) {
+        return `https://drive.google.com/file/d/${match[1]}/preview`;
+      }
+    }
+    return url;
+  };
 
   const filteredMovies = useMemo(() => {
     return movieData.filter(movie => {
@@ -237,15 +245,15 @@ export default function Home() {
                 </button>
 
                 <div className="flex-grow overflow-y-auto no-scrollbar pt-32 pb-16">
-                  <div className="aspect-video bg-black border-y-2 border-white/10 flex items-center justify-center relative shadow-[0_0_80px_rgba(0,0,0,1)] group">
-                    <Player
-                      url={selectedMovie.driveUrl}
-                      width="100%"
-                      height="100%"
-                      controls
-                      playing
+                  <div className="aspect-video bg-black border-y-2 border-white/10 flex items-center justify-center relative shadow-[0_0_80px_rgba(0,0,0,1)] group overflow-hidden">
+                    <iframe
+                      key={selectedMovie.id}
+                      src={getEmbedUrl(selectedMovie.driveUrl)}
+                      className="absolute inset-0 w-full h-full border-0"
+                      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                      allowFullScreen
                     />
-                    <div className="absolute top-4 right-6 px-4 py-1.5 bg-cyan-500 text-black text-[11px] font-black rounded-full uppercase font-orbitron shadow-[0_0_20px_#06b6d4] animate-pulse">DATA_STREAM_LIVE</div>
+                    <div className="absolute top-4 right-6 px-4 py-1.5 bg-cyan-500 text-black text-[11px] font-black rounded-full uppercase font-orbitron shadow-[0_0_20px_#06b6d4] animate-pulse pointer-events-none">DATA_STREAM_LIVE</div>
                   </div>
 
                   <div className="p-10 space-y-16">
@@ -288,7 +296,7 @@ export default function Home() {
                         target="_blank"
                         className="w-full py-8 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-black font-orbitron text-[16px] rounded-[2.5rem] flex items-center justify-center gap-6 shadow-[0_0_50px_rgba(6,182,212,0.4)] active:scale-95 transition-all uppercase tracking-[0.4em] group"
                       >
-                        INITIALIZE_STREAM ▶
+                        NONTON LANGSUNG ▶
                         <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-[2.5rem]" />
                       </a>
                     </div>
