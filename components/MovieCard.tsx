@@ -77,13 +77,24 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, onClick, index }) => {
              </div>
              <span className="text-[8px] font-orbitron text-white/30 uppercase tracking-widest">Uplink_Ready</span>
           </div>
-          <motion.span 
-            animate={{ x: [0, 3, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className={`text-[10px] ${style.text} font-black font-orbitron`}
-          >
-            { ">>" }
-          </motion.span>
+          <div className="flex items-center gap-3">
+            <a 
+              href={movie.driveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className={`text-[8px] font-black font-orbitron px-2 py-1 rounded bg-white/10 hover:bg-white/20 transition-colors ${style.text} border border-white/5`}
+            >
+              NONTON_LANGSUNG
+            </a>
+            <motion.span 
+              animate={{ x: [0, 3, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className={`text-[10px] ${style.text} font-black font-orbitron`}
+            >
+              { ">>" }
+            </motion.span>
+          </div>
         </div>
       </div>
     </motion.div>

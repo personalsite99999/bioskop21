@@ -294,6 +294,7 @@ export default function Home() {
                        <a 
                         href={selectedMovie.driveUrl}
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="w-full py-8 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-black font-orbitron text-[16px] rounded-[2.5rem] flex items-center justify-center gap-6 shadow-[0_0_50px_rgba(6,182,212,0.4)] active:scale-95 transition-all uppercase tracking-[0.4em] group"
                       >
                         NONTON LANGSUNG ▶
